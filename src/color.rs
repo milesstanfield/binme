@@ -1,21 +1,6 @@
 use colored::Colorize;
 
-pub fn print_bold(str: &String) {
-    println!("{}", str.bold());
-}
-
-pub fn print_warning(str: &String) {
-    println!("{}", str.yellow());
-}
-
-pub fn print_error(str: &String) {
-    println!("{}", str.truecolor(255, 0, 0));
-}
-
-pub fn print_success(str: &String) {
-    println!("{}", str.green().bold());
-}
-
+// todo move to a "debug" cli?
 pub fn sample() {
     let toto = "test";
     println!("{} red()", toto.red());

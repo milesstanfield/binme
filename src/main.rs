@@ -1,6 +1,7 @@
-use clis::doc::doc_cli;
-use color::{print_warning, sample};
-use std::{collections::VecDeque, env};
+use crate::clis::doc::commands::usage::usage_cmd;
+use clis::{doc::doc_cli, fix::fix_cli};
+use colored::Colorize;
+use std::{collections::VecDeque, env, process::exit};
 
 pub mod clis;
 pub mod color;
@@ -10,18 +11,28 @@ fn main() {
 
     if let Some(cli) = args.remove(0) {
         match cli.as_str() {
-            "doc" => doc_cli(&args),
-            _ => handle_unknown_cli(&cli),
+            "doc" => doc_cli(&mut args),
+            "fix" => fix_cli(&mut args),
+            _ => handle_invalid_cli(&cli),
         }
     } else {
-        handle_no_args();
+        print_cli_help();
     }
 }
 
-fn handle_unknown_cli(arg: &str) {
-    print_warning(&format!("todo is not a known arg {}", arg));
+fn handle_invalid_cli(cli: &str) {
+    println!("{}", &format!("invalid <cli> '{}'", cli).red().bold());
+    print_cli_help();
+    exit(1);
 }
 
-fn handle_no_args() {
-    println!("called binme without any args");
+fn print_cli_help() {
+    let mut args: VecDeque<String> = VecDeque::from([
+        "binme <cli>".to_string(),
+        "clis".to_string(),
+        "doc --- cli for documentation".to_string(),
+        "fix --- cli for formatting and other fixes".to_string(),
+        "examples".to_string(),
+    ]);
+    usage_cmd(&mut args);
 }
