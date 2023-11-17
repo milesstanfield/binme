@@ -27,7 +27,6 @@ fn print_doc_cli_help() {
         "binme doc <command>".to_string(),
         "commands".to_string(),
         "usage --- display usage for this cli".to_string(),
-        "examples".to_string(),
     ]);
     usage_cmd(&mut args);
 }

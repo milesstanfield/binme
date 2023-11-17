@@ -9,6 +9,7 @@ pub fn usage_cmd(args: &mut VecDeque<String>) {
     }
 }
 
+// todo move to shared location
 fn contains_help_arg(args: &mut VecDeque<String>) -> bool {
     for arg in args {
         if ["--help", "help", "-h"].contains(&arg.as_str()) {

@@ -21,6 +21,7 @@ fn main() {
 }
 
 fn handle_invalid_cli(cli: &str) {
+    // todo move this to a shared "handle_invalid" function that accepts another fn as an arg to call
     print_error(format!("invalid <cli> `{}`", cli));
     print_cli_help();
     exit(1);
@@ -32,7 +33,6 @@ fn print_cli_help() {
         "clis".to_string(),
         "doc --- cli for displaying documentation".to_string(),
         "fix --- cli for fixing formatting issues".to_string(),
-        "examples".to_string(),
     ]);
     usage_cmd(&mut args);
 }
