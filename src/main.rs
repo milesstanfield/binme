@@ -1,15 +1,16 @@
-use clis::doc::handle_doc_args;
+use clis::doc::doc_cli;
+use color::{print_warning, sample};
 use std::{collections::VecDeque, env};
 
 pub mod clis;
+pub mod color;
 
 fn main() {
-    // skip(1) cuz the first arg is the relative path to the executed binary
     let mut args: VecDeque<String> = env::args().skip(1).collect();
 
     if let Some(cli) = args.remove(0) {
         match cli.as_str() {
-            "doc" => handle_doc_args(&args),
+            "doc" => doc_cli(&args),
             _ => handle_unknown_cli(&cli),
         }
     } else {
@@ -18,7 +19,7 @@ fn main() {
 }
 
 fn handle_unknown_cli(arg: &str) {
-    println!("todo {:?} is not a known arg", arg);
+    print_warning(&format!("todo is not a known arg {}", arg));
 }
 
 fn handle_no_args() {
