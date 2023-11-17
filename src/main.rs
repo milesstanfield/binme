@@ -1,6 +1,6 @@
 use crate::clis::doc::commands::usage::usage_cmd;
 use clis::{doc::doc_cli, fix::fix_cli};
-use colored::Colorize;
+use color::print_error;
 use std::{collections::VecDeque, env, process::exit};
 
 pub mod clis;
@@ -21,7 +21,7 @@ fn main() {
 }
 
 fn handle_invalid_cli(cli: &str) {
-    println!("{}", &format!("invalid <cli> '{}'", cli).red().bold());
+    print_error(format!("invalid <cli> `{}`", cli));
     print_cli_help();
     exit(1);
 }
@@ -30,8 +30,8 @@ fn print_cli_help() {
     let mut args: VecDeque<String> = VecDeque::from([
         "binme <cli>".to_string(),
         "clis".to_string(),
-        "doc --- cli for documentation".to_string(),
-        "fix --- cli for formatting and other fixes".to_string(),
+        "doc --- cli for displaying documentation".to_string(),
+        "fix --- cli for fixing formatting issues".to_string(),
         "examples".to_string(),
     ]);
     usage_cmd(&mut args);

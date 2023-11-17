@@ -1,5 +1,5 @@
 use self::commands::usage::usage_cmd;
-use colored::Colorize;
+use crate::color::print_error;
 use std::{collections::VecDeque, process::exit};
 
 pub mod commands;
@@ -17,7 +17,7 @@ pub fn doc_cli(args: &mut VecDeque<String>) {
 }
 
 fn handle_invalid_cmd(cmd: &str) {
-    println!("{}", &format!("invalid <command> '{}'", cmd).red().bold());
+    print_error(format!("invalid <command> `{}`", cmd));
     print_doc_cli_help();
     exit(1);
 }

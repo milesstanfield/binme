@@ -1,6 +1,18 @@
 use colored::Colorize;
 
-// todo move to a "debug" cli?
+pub fn print_error(str: String) {
+    println!("{}: {}", "error".red().bold(), str);
+}
+
+pub fn print_success(str: String) {
+    println!("{}", str.green().bold());
+}
+
+pub fn print_warning(str: String) {
+    println!("{}", str.yellow().bold());
+}
+
+// todo move to a "debug" cli? OR make a `color` cli for this. `binme color warn "foo bar"`
 pub fn sample() {
     let toto = "test";
     println!("{} red()", toto.red());
