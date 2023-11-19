@@ -1,4 +1,4 @@
-use crate::clis::doc::commands::usage::usage_cmd;
+use crate::clis::doc::commands::usage::print_usage_cmd;
 use args::handling::handle_invalid_arg;
 use clis::{
     color::{color_cli, COLOR_CLI_DESCRIPTION},
@@ -36,5 +36,5 @@ fn print_cli_usage() {
         format!("fix --- {}", FIX_CLI_DESCRIPTION).to_string(),
         format!("color --- {}", COLOR_CLI_DESCRIPTION).to_string(),
     ]);
-    usage_cmd(&mut args);
+    print_usage_cmd(&mut args);
 }

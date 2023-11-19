@@ -3,7 +3,7 @@ use colored::Colorize;
 use regex::Regex;
 use std::collections::VecDeque;
 
-pub fn usage_cmd(args: &mut VecDeque<String>) {
+pub fn print_usage_cmd(args: &mut VecDeque<String>) {
     if contains_help_arg(args) || args.len() == 0 {
         print_usage_cmd_usage();
     } else if let Some(first_arg) = args.remove(0) {
@@ -102,5 +102,5 @@ fn print_usage_cmd_usage() {
         format!("{} {}", EXE_WORD, example2),
         format!("{} {}", EXE_WORD, example3),
     ]);
-    usage_cmd(&mut args);
+    print_usage_cmd(&mut args);
 }

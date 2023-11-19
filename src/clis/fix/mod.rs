@@ -1,5 +1,5 @@
 use self::commands::format::format_cmd;
-use super::doc::commands::usage::usage_cmd;
+use super::doc::commands::usage::print_usage_cmd;
 use crate::{args::handling::handle_invalid_arg, EXE_WORD};
 use std::collections::VecDeque;
 
@@ -20,7 +20,6 @@ pub fn fix_cli(args: &mut VecDeque<String>) {
 }
 
 fn print_fix_cli_usage() {
-    // todo add description?
     let mut args: VecDeque<String> = VecDeque::from([
         format!("{} fix <command>", EXE_WORD),
         "description".to_string(),
@@ -28,5 +27,5 @@ fn print_fix_cli_usage() {
         "commands".to_string(),
         "format --- todo".to_string(),
     ]);
-    usage_cmd(&mut args);
+    print_usage_cmd(&mut args);
 }
