@@ -5,6 +5,8 @@ use std::collections::VecDeque;
 
 pub mod commands;
 
+pub const FIX_CLI_DESCRIPTION: &str = "cli for fixing formatting issues";
+
 pub fn fix_cli(args: &mut VecDeque<String>) {
     if let Some(cmd) = args.remove(0) {
         match cmd.as_str() {
@@ -21,6 +23,8 @@ fn print_fix_cli_usage() {
     // todo add description?
     let mut args: VecDeque<String> = VecDeque::from([
         format!("{} fix <command>", EXE_WORD),
+        "description".to_string(),
+        FIX_CLI_DESCRIPTION.to_string(),
         "commands".to_string(),
         "format --- todo".to_string(),
     ]);

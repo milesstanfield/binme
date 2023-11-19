@@ -11,7 +11,7 @@ pub fn usage_cmd(args: &mut VecDeque<String>) {
     }
 }
 
-fn print_documentation(usage: &str, args: &mut VecDeque<String>) {
+fn print_documentation(usage: &str, args: &VecDeque<String>) {
     let options = "[<options>...]";
     let help_options = "help, -h, --help";
     let spacer = "\t\t";
@@ -22,11 +22,8 @@ fn print_documentation(usage: &str, args: &mut VecDeque<String>) {
     for (i, arg) in args.iter().enumerate() {
         if arg == "description" || arg == "examples" {
             str += &format!("\n{}:\n", arg);
-        } else if arg.contains("turn this -------")
-            || arg.contains(EXE_WORD)
-            || (i != 0 && args[i - 1] == "description")
-        {
-            if i != 0 && args[i - 1] == "description" {
+        } else if arg.contains(EXE_WORD) || last_arg(i, args) == "description" {
+            if last_arg(i, args) == "description" {
                 str += &format!("{}{}\n", indenter, arg.yellow());
             } else {
                 str += &format!("{}{}\n", indenter, arg);
@@ -51,6 +48,13 @@ fn print_documentation(usage: &str, args: &mut VecDeque<String>) {
     println!("{}", str);
 }
 
+fn last_arg(i: usize, args: &VecDeque<String>) -> &str {
+    match i {
+        0 => "",
+        _ => args[i - 1].as_str(),
+    }
+}
+
 fn arg_diff_spaces(splitter: &str, arg: &str, help_options: &str) -> String {
     let regex = Regex::new(format!("{}.*", splitter).as_str()).expect("regex empty?");
     let pre_split_arg = regex.replace_all(arg, "");
@@ -61,24 +65,24 @@ fn arg_diff_spaces(splitter: &str, arg: &str, help_options: &str) -> String {
 fn usage_description() -> String {
     format!(
         r#"--------------------------------------   |  --------------------------------------
-    turn this ----------------------------   |  into this ----------------------------
-    --------------------------------------   |  --------------------------------------
-                                             |
-    {} doc usage "foo <command>"          |  Usage: foo <command> [<options>...]
-    "commands"                               |
-        "bar --- does some baR thing"        |  Valid commands:
-        "baz --- does some baZ thing"        |      bar                   miles terminal [<options>...]
-                                             |      baz                   miles dock [<options>...]
-    --------------------------------------   |
-    --------------------------------------   |  Valid options:
-    --------------------------------------   |      help, -h, --help      display help info and exit
-                                             |
-                                             |  Exit Status:
-                                             |  Returns 0 unless an invalid input is given or the
-                                             |  execution fails
-                                             |
-                                             |  --------------------------------------
-                                             |  --------------------------------------
+     turn this ----------------------------   |  into this ----------------------------
+     --------------------------------------   |  --------------------------------------
+                                              |
+     {} doc usage "foo <command>"          |  Usage: foo <command> [<options>...]
+     "commands"                               |
+         "bar --- does some baR thing"        |  Valid commands:
+         "baz --- does some baZ thing"        |      bar                   miles terminal [<options>...]
+                                              |      baz                   miles dock [<options>...]
+     --------------------------------------   |
+     --------------------------------------   |  Valid options:
+     --------------------------------------   |      help, -h, --help      display help info and exit
+                                              |
+                                              |  Exit Status:
+                                              |  Returns 0 unless an invalid input is given or the
+                                              |  execution fails
+                                              |
+                                              |  --------------------------------------
+                                              |  --------------------------------------
     "#,
         EXE_WORD
     )

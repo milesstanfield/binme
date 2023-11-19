@@ -8,6 +8,8 @@ use std::collections::VecDeque;
 
 pub mod commands;
 
+pub const COLOR_CLI_DESCRIPTION: &str = "cli for formatting println code in color";
+
 pub fn color_cli(args: &mut VecDeque<String>) {
     if let Some(cmd) = args.remove(0) {
         match cmd.as_str() {
@@ -24,9 +26,10 @@ pub fn color_cli(args: &mut VecDeque<String>) {
 }
 
 fn print_color_cli_usage() {
-    // todo add description?
     let mut args: VecDeque<String> = VecDeque::from([
         format!("{} color <command>", EXE_WORD),
+        "description".to_string(),
+        COLOR_CLI_DESCRIPTION.to_string(),
         "commands".to_string(),
         format!("print_error --- {}", PRINT_ERROR_DESCRIPTION),
         format!("sample      --- {}", PRINT_SAMPLE_DESCRIPTION),
