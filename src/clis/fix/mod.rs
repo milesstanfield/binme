@@ -1,4 +1,4 @@
-use self::commands::format::format_cmd;
+use self::commands::format::{format_cmd, FORMAT_DESCRIPTION};
 use super::doc::commands::usage::print_usage_cmd;
 use crate::{args::handling::handle_invalid_arg, EXE_WORD};
 use std::collections::VecDeque;
@@ -25,7 +25,7 @@ fn print_fix_cli_usage() {
         "description".to_string(),
         FIX_CLI_DESCRIPTION.to_string(),
         "commands".to_string(),
-        "format --- todo".to_string(),
+        format!("format --- {}", FORMAT_DESCRIPTION.to_string()),
     ]);
     print_usage_cmd(&mut args);
 }
