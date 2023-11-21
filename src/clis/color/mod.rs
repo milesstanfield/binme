@@ -9,6 +9,7 @@ use crate::{args::handling::handle_invalid_arg, EXE_WORD};
 use std::collections::VecDeque;
 
 pub mod commands;
+
 pub const COLOR_CLI_DESCRIPTION: &str = "cli for formatting println code in color";
 
 pub fn color_cli(args: &mut VecDeque<String>) {

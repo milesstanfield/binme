@@ -98,9 +98,9 @@ fn print_usage_cmd_usage() {
         "description".to_string(),
         usage_description(),
         "examples".to_string(),
-        format!("{} {}", EXE_WORD, example1),
-        format!("{} {}", EXE_WORD, example2),
-        format!("{} {}", EXE_WORD, example3),
+        format!("{}{}", EXE_WORD, example1),
+        format!("{}{}", EXE_WORD, example2),
+        format!("{}{}", EXE_WORD, example3),
     ]);
     print_usage_cmd(&mut args);
 }

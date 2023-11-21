@@ -9,6 +9,7 @@ use std::{collections::VecDeque, env};
 
 pub mod args;
 pub mod clis;
+pub mod shell;
 
 pub static EXE_WORD: &str = "binme";
 

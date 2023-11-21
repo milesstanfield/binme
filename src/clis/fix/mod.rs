@@ -5,7 +5,7 @@ use std::collections::VecDeque;
 
 pub mod commands;
 
-pub const FIX_CLI_DESCRIPTION: &str = "cli for fixing formatting issues";
+pub const FIX_CLI_DESCRIPTION: &str = "cli for fixing common issues";
 
 pub fn fix_cli(args: &mut VecDeque<String>) {
     if let Some(cmd) = args.remove(0) {
