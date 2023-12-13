@@ -1,0 +1,5 @@
+#!/bin/sh
+
+rm -rf binaries/release.txt
+cargo build --release
+cp -rf target/release/binme binaries/release.txt
