@@ -8,7 +8,10 @@ rm -rf binaries/release.txt && \
 # Download/Update
 ```bash
 sudo rm -rf /usr/local/bin/binme && \
-  curl -L https://github.com/milesstanfield/binme/raw/main/bin/release.txt > binme && \
-  sudo chmod +x binme && \
-  sudo mv binme /usr/local/bin
+  rm -rf release.txt && \
+  curl -H "Authorization: token $GITHUB_TOKEN" \
+    -o release.txt \
+    https://raw.githubusercontent.com/milesstanfield/binme/main/binaries/release.txt && \
+  sudo chmod +x release.txt && \
+  sudo mv release.txt /usr/local/bin/binme
 ```
