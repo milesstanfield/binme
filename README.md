@@ -1,6 +1,6 @@
 # Generate release binary
 ```bash
-rm -rf bin/binme && \
+rm -rf binaries/release.txt && \
   cargo build --release && \
   cp -rf target/release/binme binaries/release.txt
 ```
