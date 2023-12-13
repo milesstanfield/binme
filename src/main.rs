@@ -5,6 +5,7 @@ use clis::{
     doc::{doc_cli, DOC_CLI_DESCRIPTION},
     find::{find_cli, FIND_CLI_DESCRIPTION},
     fix::{fix_cli, FIX_CLI_DESCRIPTION},
+    grepx::{grepx_cli, GREPX_CLI_DESCRIPTION},
 };
 use std::{collections::VecDeque, env};
 
@@ -23,6 +24,7 @@ fn main() {
             "doc" => doc_cli(&mut args),
             "find" => find_cli(&mut args),
             "fix" => fix_cli(&mut args),
+            "grepx" => grepx_cli(&mut args),
             "help" | "--help" | "-h" => print_cli_usage(),
             _ => handle_invalid_arg("cli", &cli, print_cli_usage),
         }
@@ -39,6 +41,7 @@ fn print_cli_usage() {
         format!("doc --- {}", DOC_CLI_DESCRIPTION).to_string(),
         format!("find --- {}", FIND_CLI_DESCRIPTION).to_string(),
         format!("fix --- {}", FIX_CLI_DESCRIPTION).to_string(),
+        format!("grepx --- {}", GREPX_CLI_DESCRIPTION).to_string(),
     ]);
     print_usage_cmd(&mut args);
 }

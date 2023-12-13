@@ -1,8 +1,6 @@
 # Generate release binary
 ```bash
-rm -rf binaries/release.txt && \
-  cargo build --release && \
-  cp -rf target/release/binme binaries/release.txt
+./bin/build
 ```
 
 # Download/Update
