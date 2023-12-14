@@ -1,13 +1,13 @@
 use regex::Regex;
 
-use super::{color::commands::error::print_error, doc::commands::usage::print_usage_cmd};
-use crate::{args::expr::contains_help_arg, shell::file::find_files, EXE_WORD};
-use std::{collections::VecDeque, process::exit};
+use super::{color::commands::error, doc::commands::usage};
+use crate::{args::expr, shell::file, EXE_WORD};
+use std::{collections::VecDeque, process};
 
 pub const FIND_CLI_DESCRIPTION: &str = "cli for finding system files/folders";
 
 pub fn find_cli(args: &mut VecDeque<String>) {
-    if contains_help_arg(args) {
+    if expr::contains_help_arg(args) {
         print_find_cli_help();
     } else {
         match args.len() {
@@ -28,7 +28,7 @@ fn find_cmd(args: &mut VecDeque<String>) {
         reg = Regex::new(formatted_pattern.as_str()).unwrap();
     }
 
-    let findings = find_files(dir);
+    let findings = file::find_files(dir);
     let found_files: Vec<&str> = findings
         .split("\n")
         .into_iter()
@@ -54,9 +54,9 @@ fn patternize(pattern: &String) -> (bool, String) {
 }
 
 fn handle_missing_arg(msg: &str) {
-    print_error(&msg.to_string());
+    error::print_error(&msg.to_string());
     print_find_cli_help();
-    exit(1);
+    process::exit(1);
 }
 
 fn print_find_cli_help() {
@@ -65,5 +65,5 @@ fn print_find_cli_help() {
         "description".to_string(),
         FIND_CLI_DESCRIPTION.to_string(),
     ]);
-    print_usage_cmd(&mut args);
+    usage::print_usage_cmd(&mut args);
 }

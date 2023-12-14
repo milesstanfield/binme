@@ -1,10 +1,10 @@
-use crate::{args::expr::contains_help_arg, EXE_WORD};
+use crate::{args::expr, EXE_WORD};
 use colored::Colorize;
 use regex::Regex;
 use std::collections::VecDeque;
 
 pub fn print_usage_cmd(args: &mut VecDeque<String>) {
-    if contains_help_arg(args) || args.len() == 0 {
+    if expr::contains_help_arg(args) || args.len() == 0 {
         print_usage_cmd_usage();
     } else if let Some(first_arg) = args.remove(0) {
         print_documentation(&first_arg, args);

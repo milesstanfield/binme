@@ -1,12 +1,12 @@
-use super::{color::commands::error::print_error, doc::commands::usage::print_usage_cmd};
-use crate::{args::expr::contains_help_arg, EXE_WORD};
+use super::{color::commands::error, doc::commands::usage};
+use crate::{args::expr, EXE_WORD};
 use regex::Regex;
-use std::{collections::VecDeque, process::exit};
+use std::{collections::VecDeque, process};
 
 pub const GREPX_CLI_DESCRIPTION: &str = "cli for grepping with regex";
 
 pub fn grepx_cli(args: &mut VecDeque<String>) {
-    if contains_help_arg(args) {
+    if expr::contains_help_arg(args) {
         print_grepx_cli_help();
     } else {
         match args.len() {
@@ -42,9 +42,9 @@ fn patternize(pattern: &String) -> String {
 }
 
 fn handle_missing_arg(msg: &str) {
-    print_error(&msg.to_string());
+    error::print_error(&msg.to_string());
     print_grepx_cli_help();
-    exit(1);
+    process::exit(1);
 }
 
 fn print_grepx_cli_help() {
@@ -59,5 +59,5 @@ fn print_grepx_cli_help() {
         format!("{}{}", EXE_WORD, example1),
         format!("{}{}", EXE_WORD, example2),
     ]);
-    print_usage_cmd(&mut args);
+    usage::print_usage_cmd(&mut args);
 }
