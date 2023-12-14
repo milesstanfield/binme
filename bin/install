@@ -1,0 +1,9 @@
+#!/bin/sh
+
+sudo rm -rf /usr/local/bin/binme &&
+  rm -rf binme-release &&
+  curl -H "Authorization: token $GITHUB_TOKEN" \
+    -o binme-release \
+    https://raw.githubusercontent.com/milesstanfield/binme/main/binaries/release &&
+  sudo chmod +x binme-release &&
+  sudo mv binme-release /usr/local/bin/binme
