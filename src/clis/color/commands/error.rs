@@ -17,7 +17,7 @@ pub fn print_error(str: &String) {
 }
 
 fn print_error_cmd_usage() {
-    let mut args: VecDeque<String> = VecDeque::from([
+    let mut args = VecDeque::from([
         format!("{} color print_error <string>", EXE_WORD),
         "description".to_string(),
         PRINT_ERROR_DESCRIPTION.to_string(),

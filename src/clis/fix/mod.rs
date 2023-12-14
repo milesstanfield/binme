@@ -25,7 +25,7 @@ fn print_fix_cli_usage() {
         "description".to_string(),
         FIX_CLI_DESCRIPTION.to_string(),
         "commands".to_string(),
-        format!("format --- {}", FORMAT_DESCRIPTION.to_string()),
+        format!("format --- {}", FORMAT_DESCRIPTION),
     ]);
     print_usage_cmd(&mut args);
 }

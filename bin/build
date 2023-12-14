@@ -1,6 +1,7 @@
 #!/bin/sh
 
 rm -rf binaries/release.txt &&
+  cargo check &&
   cargo build &&
   cargo build --release &&
   cp -rf target/release/binme binaries/release

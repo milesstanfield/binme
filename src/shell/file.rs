@@ -1,4 +1,4 @@
-use super::output::check_and_format_output;
+use super::output;
 use regex::Regex;
 use std::process::{Command, Stdio};
 
@@ -10,13 +10,15 @@ pub fn find_files(dir: &str) -> String {
         .output()
         .expect("Failed to execute command");
 
-    check_and_format_output(output)
+    output::check_and_format_output(output)
 }
 
 pub fn file_extension(file: &str) -> String {
     if file.contains(".") {
-        let regex = Regex::new(r"(.*)(\.)").unwrap();
-        regex.replace_all(file, "${2}").to_string()
+        Regex::new(r"(.*)(\.)")
+            .unwrap()
+            .replace_all(file, "${2}")
+            .to_string()
     } else {
         "".to_string()
     }

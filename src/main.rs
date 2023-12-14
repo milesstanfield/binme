@@ -9,9 +9,9 @@ use clis::{
 };
 use std::{collections::VecDeque, env};
 
-pub mod args;
-pub mod clis;
-pub mod shell;
+mod args;
+mod clis;
+mod shell;
 
 pub static EXE_WORD: &str = "binme";
 
@@ -35,13 +35,13 @@ fn main() {
 
 fn print_cli_usage() {
     let mut args: VecDeque<String> = VecDeque::from([
-        format!("{} <cli>", EXE_WORD).to_string(),
-        "clis".to_string(),
-        format!("color --- {}", COLOR_CLI_DESCRIPTION).to_string(),
-        format!("doc --- {}", DOC_CLI_DESCRIPTION).to_string(),
-        format!("find --- {}", FIND_CLI_DESCRIPTION).to_string(),
-        format!("fix --- {}", FIX_CLI_DESCRIPTION).to_string(),
-        format!("grepx --- {}", GREPX_CLI_DESCRIPTION).to_string(),
+        format!("{} <cli>", EXE_WORD),
+        "clis".into(),
+        format!("color --- {}", COLOR_CLI_DESCRIPTION),
+        format!("doc --- {}", DOC_CLI_DESCRIPTION),
+        format!("find --- {}", FIND_CLI_DESCRIPTION),
+        format!("fix --- {}", FIX_CLI_DESCRIPTION),
+        format!("grepx --- {}", GREPX_CLI_DESCRIPTION),
     ]);
     print_usage_cmd(&mut args);
 }
