@@ -60,7 +60,7 @@ fn handle_missing_arg(msg: &str) {
 }
 
 fn print_find_cli_help() {
-    let mut args: VecDeque<String> = VecDeque::from([
+    let mut args = VecDeque::from([
         format!("{} find <dir> <pattern>", EXE_WORD),
         "description".to_string(),
         FIND_CLI_DESCRIPTION.to_string(),

@@ -93,7 +93,7 @@ fn print_usage_cmd_usage() {
     let example2 = r#" doc usage "foo <option>" "options" "--option1 --- lorem ipsum""#;
     let example3 = r#" doc usage "foo <arg>" "description" "lorem ipsum dolor sit amet""#;
 
-    let mut args: VecDeque<String> = VecDeque::from([
+    let mut args = VecDeque::from([
         format!("{} doc usage <arg> [<arg>...]", EXE_WORD),
         "description".to_string(),
         usage_description(),

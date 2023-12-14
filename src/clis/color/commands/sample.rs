@@ -1,11 +1,11 @@
-use crate::{args::expr::contains_help_arg, clis::doc::commands::usage::print_usage_cmd, EXE_WORD};
+use crate::{args::expr, clis::doc::commands::usage, EXE_WORD};
 use colored::Colorize;
 use std::collections::VecDeque;
 
 pub const PRINT_SAMPLE_DESCRIPTION: &str = "print a sampling of color combinations and their code";
 
 pub fn print_sample_cmd(args: &mut VecDeque<String>) {
-    if contains_help_arg(args) {
+    if expr::contains_help_arg(args) {
         print_sample_cmd_help();
     } else {
         print_sample();
@@ -13,12 +13,12 @@ pub fn print_sample_cmd(args: &mut VecDeque<String>) {
 }
 
 fn print_sample_cmd_help() {
-    let mut args: VecDeque<String> = VecDeque::from([
+    let mut args = VecDeque::from([
         format!("{} color sample", EXE_WORD),
         "description".to_string(),
         PRINT_SAMPLE_DESCRIPTION.to_string(),
     ]);
-    print_usage_cmd(&mut args);
+    usage::print_usage_cmd(&mut args);
 }
 
 fn print_sample() {

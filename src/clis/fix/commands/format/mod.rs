@@ -33,7 +33,7 @@ fn format_files_in_dir(dir: &str) {
 }
 
 fn format_cmd_usage() {
-    let mut args: VecDeque<String> = VecDeque::from([
+    let mut args = VecDeque::from([
         format!("{} fix format <dir>", EXE_WORD),
         "description".to_string(),
         FORMAT_DESCRIPTION.to_string(),

@@ -19,7 +19,7 @@ pub fn doc_cli(args: &mut VecDeque<String>) {
 }
 
 fn print_doc_cli_usage() {
-    let mut args: VecDeque<String> = VecDeque::from([
+    let mut args = VecDeque::from([
         format!("{} doc <command>", EXE_WORD),
         "description".to_string(),
         DOC_CLI_DESCRIPTION.to_string(),

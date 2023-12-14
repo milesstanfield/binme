@@ -20,7 +20,7 @@ pub fn fix_cli(args: &mut VecDeque<String>) {
 }
 
 fn print_fix_cli_usage() {
-    let mut args: VecDeque<String> = VecDeque::from([
+    let mut args = VecDeque::from([
         format!("{} fix <command>", EXE_WORD),
         "description".to_string(),
         FIX_CLI_DESCRIPTION.to_string(),

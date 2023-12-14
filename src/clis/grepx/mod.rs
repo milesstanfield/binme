@@ -51,7 +51,7 @@ fn print_grepx_cli_help() {
     let example1 = r#" grepx "foo\nbar\nbaz" "ba[\w]+""#;
     let example2 = r#" grepx "foo\nbar\nbaz" "/ba[\w]+/""#;
 
-    let mut args: VecDeque<String> = VecDeque::from([
+    let mut args = VecDeque::from([
         format!("{} grepx <haystack> <regex>", EXE_WORD),
         "description".to_string(),
         GREPX_CLI_DESCRIPTION.to_string(),

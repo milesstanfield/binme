@@ -1,5 +1,6 @@
 use crate::clis::color::commands::error;
-use std::process::{exit, Output};
+use std::process;
+use std::process::Output;
 
 pub fn check_and_format_output(output: Output) -> String {
     if let Some(1) = output.status.code() {
@@ -20,6 +21,6 @@ fn check_stderr_string(stderr: &str) -> String {
         "".to_string()
     } else {
         error::print_error(&stderr.to_string());
-        exit(1)
+        process::exit(1)
     }
 }

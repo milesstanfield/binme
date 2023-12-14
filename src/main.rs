@@ -34,7 +34,7 @@ fn main() {
 }
 
 fn print_cli_usage() {
-    let mut args: VecDeque<String> = VecDeque::from([
+    let mut args = VecDeque::from([
         format!("{} <cli>", EXE_WORD),
         "clis".into(),
         format!("color --- {}", COLOR_CLI_DESCRIPTION),
